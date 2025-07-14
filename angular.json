@@ -29,6 +29,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/frontend-joyofenergy-Angular/",
               "budgets": [
                 {
                   "type": "initial",
