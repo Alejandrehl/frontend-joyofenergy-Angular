@@ -1,6 +1,6 @@
 # JOI Energy - Angular Frontend
 
-A modern, responsive Angular 14 application for energy consumption monitoring with real-time charts and device management.
+A modern, responsive Angular 14 application for energy consumption monitoring with real-time charts and device management, built using **Domain-Driven Design (DDD)** principles.
 
 ## 🚀 Features
 
@@ -9,6 +9,8 @@ A modern, responsive Angular 14 application for energy consumption monitoring wi
 - **Responsive Design**: Optimized for desktop, tablet, and mobile devices
 - **Interactive Charts**: Dynamic energy consumption visualization using Chart.js
 - **Mobile-First UX**: Hamburger menu with slide-out sidebar for mobile devices
+- **Domain-Driven Design**: Clean architecture with separation of concerns
+- **Mock Data System**: Simulated energy data for development and testing
 
 ## 🛠️ Technologies
 
@@ -16,8 +18,52 @@ A modern, responsive Angular 14 application for energy consumption monitoring wi
 - **Language**: TypeScript 4.7
 - **Styling**: SCSS + BassCSS (utility-first CSS framework)
 - **Charts**: Chart.js 3.2.1
-- **Code Quality**: ESLint + Prettier + Husky
+- **Code Quality**: ESLint + Prettier v3 + Husky + lint-staged
+- **Architecture**: Domain-Driven Design (DDD)
 - **Package Manager**: npm
+
+## 🏗️ Architecture - Domain-Driven Design (DDD)
+
+This project follows **Domain-Driven Design** principles with a clean, layered architecture:
+
+```
+src/app/
+├── domain/                          # Domain Layer (Business Logic)
+│   ├── entities/                    # Domain Entities
+│   │   ├── energy-reading.entity.ts
+│   │   └── device-consumption.entity.ts
+│   ├── value-objects/               # Value Objects
+│   │   ├── energy-value.vo.ts
+│   │   ├── timestamp.vo.ts
+│   │   └── device-category.vo.ts
+│   ├── domain-services/             # Domain Services
+│   │   └── energy-calculation.service.ts
+│   ├── repositories/                # Repository Interfaces
+│   │   └── energy-reading.repository.ts
+│   └── domain.module.ts             # Domain Configuration
+├── application/                     # Application Layer (Use Cases)
+│   ├── use-cases/                   # Application Use Cases
+│   │   ├── get-energy-readings.usecase.ts
+│   │   └── calculate-energy-metrics.usecase.ts
+│   └── services/                    # Application Services
+│       └── energy-application.service.ts
+├── infrastructure/                  # Infrastructure Layer (Data Access)
+│   └── repositories/                # Repository Implementations
+│       └── mock-energy-reading.repository.ts
+└── presentation/                    # Presentation Layer (UI Components)
+    └── components/
+        ├── chart/                   # Chart.js integration
+        ├── main/                    # Main dashboard component
+        └── side-bar/                # Energy data sidebar
+```
+
+### 🎯 DDD Benefits
+
+- **Separation of Concerns**: Clear boundaries between business logic and technical implementation
+- **Maintainability**: Changes in one layer don't affect others
+- **Testability**: Each layer can be tested independently
+- **Scalability**: Easy to add new features and replace implementations
+- **Business Focus**: Code reflects the domain language and business rules
 
 ## 📱 Responsive Design
 
@@ -48,24 +94,6 @@ The application is fully responsive with optimized layouts for different screen 
 - **Spacing**: Consistent 8px grid system
 - **Shadows**: Subtle elevation with multiple shadow levels
 - **Animations**: Smooth transitions using cubic-bezier easing
-
-## 🏗️ Project Structure
-
-```text
-src/
-├── app/
-│   ├── components/
-│   │   ├── chart/           # Chart.js integration
-│   │   ├── main/            # Main dashboard component
-│   │   └── side-bar/        # Energy data sidebar
-│   ├── shared/
-│   │   ├── models/          # TypeScript interfaces
-│   │   ├── services/        # Angular services
-│   │   └── utils/           # Utility functions
-│   └── ...
-├── assets/
-└── ...
-```
 
 ## 🚀 Getting Started
 
@@ -124,23 +152,23 @@ npm test               # Run unit tests
 
 This project uses several tools to ensure code quality and consistency:
 
-#### ESLint
+#### ESLint + Prettier Integration
 
-- **Purpose**: Static code analysis and linting
-- **Configuration**: `.eslintrc.json`
-- **Rules**: Angular-specific rules, TypeScript best practices, accessibility guidelines
-
-#### Prettier
-
-- **Purpose**: Code formatting
-- **Configuration**: `.prettierrc`
-- **Features**: Consistent code style across the project
+- **ESLint**: Static code analysis with Angular-specific rules
+- **Prettier v3**: Code formatting with `eslint-plugin-prettier` integration
+- **Configuration**: Aligned rules to prevent conflicts between ESLint and Prettier
+- **Features**: 
+  - TypeScript best practices
+  - Angular-specific rules
+  - Accessibility guidelines
+  - Consistent code formatting
 
 #### Husky + lint-staged
 
 - **Purpose**: Git hooks for pre-commit quality checks
 - **Behavior**: Automatically runs ESLint and Prettier on staged files
 - **Configuration**: `.husky/pre-commit` and `package.json` lint-staged section
+- **Benefits**: Ensures all committed code meets quality standards
 
 ### Code Quality Workflow
 
@@ -151,6 +179,35 @@ This project uses several tools to ensure code quality and consistency:
 3. **Auto-fix**:
    - `npm run lint:fix` - Fix linting issues
    - `npm run format` - Format code
+
+## 🏗️ Domain Layer
+
+### Entities
+
+- **`EnergyReading`**: Represents energy consumption readings with business logic
+- **`DeviceConsumption`**: Represents device power consumption with validation
+
+### Value Objects
+
+- **`EnergyValue`**: Encapsulates energy values with validation (non-negative)
+- **`Timestamp`**: Handles timestamps with comparison and grouping operations
+- **`DeviceCategory`**: Defines valid device categories (HVAC, Electronics, etc.)
+
+### Domain Services
+
+- **`EnergyCalculationService`**: Contains business logic for energy calculations
+  - Total consumption calculation
+  - Average consumption calculation
+  - Daily grouping of readings
+  - Time-based sorting
+
+## 🔄 Data Flow
+
+```
+Component → Application Service → Use Case → Domain Service → Repository
+```
+
+The application uses DTOs (Data Transfer Objects) to maintain clean boundaries between layers while preserving the same functionality as the original implementation.
 
 ## 📱 Mobile Features
 
@@ -183,26 +240,29 @@ This project uses several tools to ensure code quality and consistency:
 - Dashboard layout management
 - Sidebar state control
 - Mobile header integration
+- Uses DDD Application Service for data access
 
 ### Sidebar Component (`app-side-bar`)
 
 - Energy consumption display
 - Device power monitoring
 - Responsive layout adaptation
+- Direct integration with mock repository
 
 ### Chart Component (`app-chart`)
 
 - Chart.js integration
 - Responsive canvas sizing
 - Data visualization
+- Uses DDD DTOs for data structure
 
 ## 🔧 Configuration Files
 
-- **`.eslintrc.json`**: ESLint configuration for Angular
-- **`.prettierrc`**: Prettier formatting rules
+- **`.eslintrc.json`**: ESLint configuration with Prettier integration
+- **`.prettierrc`**: Prettier v3 formatting rules
 - **`.prettierignore`**: Files to exclude from formatting
 - **`angular.json`**: Angular CLI configuration
-- **`package.json`**: Dependencies and scripts
+- **`package.json`**: Dependencies and scripts with lint-staged configuration
 
 ## 🐛 Troubleshooting
 
@@ -219,13 +279,14 @@ npm cache clean --force
 npm install --legacy-peer-deps
 ```
 
-#### ESLint Configuration
+#### ESLint/Prettier Conflicts
 
-If ESLint fails to load:
+If you encounter formatting conflicts:
 
 ```bash
-# Ensure correct @angular-eslint versions for Angular 14
-npm install --save-dev @angular-eslint/eslint-plugin@14.0.0 @angular-eslint/eslint-plugin-template@14.0.0 @angular-eslint/template-parser@14.0.0 @angular-eslint/builder@14.0.0 --legacy-peer-deps
+# Run auto-fix for both tools
+npm run lint:fix
+npm run format
 ```
 
 #### Mobile Layout Issues
@@ -240,12 +301,14 @@ npm install --save-dev @angular-eslint/eslint-plugin@14.0.0 @angular-eslint/esli
 - **Loading**: Lazy loading ready for future feature modules
 - **Caching**: Proper cache headers for static assets
 - **Mobile**: Optimized for mobile network conditions
+- **DDD Benefits**: Efficient separation reduces bundle size impact
 
 ## 🔒 Security
 
 - **Content Security Policy**: Configured for Angular applications
 - **XSS Protection**: Angular's built-in sanitization
 - **HTTPS Ready**: Configured for secure deployment
+- **Domain Validation**: Business rules enforced at domain layer
 
 ## 🚀 Deployment
 
@@ -261,14 +324,32 @@ npm run build
 - Optimized for production
 - Minified and bundled assets
 
+## 🧪 Testing Strategy
+
+The DDD architecture enables comprehensive testing:
+
+- **Unit Tests**: Test domain entities, value objects, and services
+- **Integration Tests**: Test use cases and application services
+- **Component Tests**: Test presentation layer components
+- **Repository Tests**: Test data access layer (mock implementations)
+
 ## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch
-3. Make your changes
+3. Make your changes following DDD principles
 4. Run quality checks: `npm run lint && npm run format:check`
-5. Commit with descriptive messages
-6. Push and create a pull request
+5. Ensure all tests pass
+6. Commit with descriptive messages
+7. Push and create a pull request
+
+### Development Guidelines
+
+- **Follow DDD principles** when adding new features
+- **Use appropriate layers** for different types of logic
+- **Maintain clean boundaries** between layers
+- **Write tests** for domain logic and use cases
+- **Follow naming conventions** that reflect the domain language
 
 ## 📄 License
 
@@ -279,4 +360,15 @@ This project is licensed under the MIT License.
 - Angular team for the excellent framework
 - Chart.js for powerful data visualization
 - BassCSS for utility-first CSS framework
+- Eric Evans for Domain-Driven Design methodology
 - The open-source community for quality tools and libraries
+
+## 🔄 Migration Notes
+
+This project was successfully migrated from a traditional Angular architecture to Domain-Driven Design:
+
+- **Preserved functionality**: All original features maintained
+- **Improved maintainability**: Clear separation of concerns
+- **Enhanced testability**: Each layer can be tested independently
+- **Better scalability**: Easy to add new features and replace implementations
+- **Quality tools**: Upgraded to Prettier v3 with perfect ESLint integration
