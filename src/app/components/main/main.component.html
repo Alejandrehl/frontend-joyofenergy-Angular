@@ -17,7 +17,9 @@
     
     <!-- Sidebar with overlay -->
     <div class="sidebar-overlay" [class.active]="sidebarOpen" (click)="closeSidebar()"></div>
-    <app-side-bar class="sidebar" [class.open]="sidebarOpen"></app-side-bar>
+    <div class="sidebar" [class.open]="sidebarOpen">
+      <app-side-bar></app-side-bar>
+    </div>
     
     <div class="bg-very-light-grey p2 md-p3 flex-auto overflow-auto main-content">
         <h1 class="h2 md-h1 regular darkgray line-height-1 mb2 md-mb3 desktop-title md-show">Energy consumption</h1>

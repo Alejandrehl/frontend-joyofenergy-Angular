@@ -252,8 +252,8 @@ html {
 
 @media (max-width: 767px) {
   .sidebar-overlay {
-    top: 60px;
-    height: calc(100% - 60px);
+    top: 64px;
+    height: calc(100% - 64px);
   }
 }
 
@@ -271,9 +271,15 @@ html {
   background-color: white;
   border-right: 1px solid rgb(225, 225, 225);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1000;
+  z-index: 1001;
   height: 100vh;
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar app-side-bar {
+  display: block;
+  height: 100%;
+  width: 100%;
 }
 
 .sidebar-content {
@@ -281,10 +287,13 @@ html {
   position: relative;
   overflow-y: auto;
   overflow-x: hidden;
+  background-color: white;
 }
 
 .sidebar-inner {
   padding: 24px 20px;
+  background-color: white;
+  min-height: 100%;
 }
 
 // Energy cards in sidebar
@@ -377,17 +386,19 @@ html {
   .sidebar {
     position: fixed;
     top: 64px; // Below mobile header
-    left: -320px;
+    left: -280px;
     height: calc(100vh - 64px);
     width: 280px;
     min-width: 280px;
     border-right: none;
     box-shadow: 4px 0 16px rgba(0, 0, 0, 0.15);
     transform: translateX(-100%);
+    z-index: 1001;
   }
 
   .sidebar.open {
     transform: translateX(0);
+    left: 0;
   }
 
   .main-content {
@@ -474,6 +485,7 @@ html {
     height: calc(100vh - 56px);
     width: 260px;
     min-width: 260px;
+    left: -260px;
   }
 
   .main-content {
