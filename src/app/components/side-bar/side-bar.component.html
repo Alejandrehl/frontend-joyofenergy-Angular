@@ -1,25 +1,32 @@
-<div class="p3 menuWidth overflow-auto">
+<div class="sidebar-content p2 md-p3 overflow-auto">
+  <!-- Close button for mobile -->
+  <button 
+    class="sidebar-close md-hide" 
+    (click)="closeSidebar()"
+    aria-label="Close menu">
+    <span class="close-icon">×</span>
+  </button>
+  
   <div
-    class="energy-card"
+    class="energy-card mb2 md-mb3"
     *ngFor="let energyField of energyConsumptionMap | keyvalue: asIsOrder"
   >
-    <div class="h2 greyBlue">
+    <div class="h3 md-h2 greyBlue">
       {{ energyField.key }}
     </div>
-    <div class="darkgray mb2">
+    <div class="darkgray mb1 md-mb2">
       {{ energyField.value }}
     </div>
   </div>
-  <section class="h5 darkgray mb2">
+  <section class="h6 md-h5 darkgray mb2">
 
-
-  <h4 class="h4 mb1">Your devices:</h4>
+  <h4 class="h5 md-h4 mb1">Your devices:</h4>
   <div
     class="shadow-2 roundedMore bg-super-light-grey mb1"
     *ngFor="let device of devicesMap | keyvalue"
   >
-    <p class="darkgray pl2 pt1 pb1">{{ device.key }}</p>
-    <p class="h5 darkgray bold pl2 pb1 pt1 bg-very-light-grey">
+    <p class="darkgray pl1 md-pl2 pt1 pb1">{{ device.key }}</p>
+    <p class="h6 md-h5 darkgray bold pl1 md-pl2 pb1 pt1 bg-very-light-grey">
       {{ device.value }}
     </p>
   </div>

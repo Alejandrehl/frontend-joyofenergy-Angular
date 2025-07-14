@@ -28,9 +28,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
+              "src/basscss.scss",
               "src/index.scss",
-              "src/basscss.scss"       
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -98,9 +98,9 @@
               "src/assets"
             ],
             "styles": [ 
-              "src/styles.scss",
+              "src/basscss.scss",
               "src/index.scss",
-              "src/basscss.scss"
+              "src/styles.scss"
             ],
             "scripts": []
           }
