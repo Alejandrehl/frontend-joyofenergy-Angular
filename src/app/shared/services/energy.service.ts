@@ -12,25 +12,23 @@ import { getReadings, groupByDay, sortByTime } from '../utils/reading';
   providedIn: 'root',
 })
 export class EnergyService {
-  constructor() {}
+  public constructor() {}
 
-  getEnergyReadings(length: number = 1200): Observable<EnergyReading[]> {
+  public getEnergyReadings(length = 1200): Observable<EnergyReading[]> {
     return new Observable(observer => {
-      getReadings(length).then(readings => {
+      void getReadings(length).then(readings => {
         observer.next(readings);
         observer.complete();
       });
     });
   }
 
-  getEnergyConsumptionData(
-    length: number = 1200
+  public getEnergyConsumptionData(
+    length = 1200
   ): Observable<EnergyConsumptionData> {
     return new Observable(observer => {
-      getReadings(length).then(readings => {
-        const groupedReadings = sortByTime(
-          groupByDay(readings)
-        ) as EnergyReading[];
+      void getReadings(length).then(readings => {
+        const groupedReadings = sortByTime(groupByDay(readings));
         const totalConsumption = groupedReadings.reduce(
           (sum, reading) => sum + reading.value,
           0
@@ -47,7 +45,7 @@ export class EnergyService {
     });
   }
 
-  getEnergyMetrics(): Observable<EnergyMetrics> {
+  public getEnergyMetrics(): Observable<EnergyMetrics> {
     return of({
       powerDraw: '⚡️ 1.4kW',
       solarProduction: '☀️️ 5.8kW',
@@ -55,7 +53,7 @@ export class EnergyService {
     });
   }
 
-  getDeviceConsumptions(): Observable<DeviceConsumption[]> {
+  public getDeviceConsumptions(): Observable<DeviceConsumption[]> {
     return of([
       { name: 'Air conditioner', power: '0.3093kW', category: 'HVAC' },
       { name: 'Wi-Fi router', power: '0.0033kW', category: 'Electronics' },

@@ -30,7 +30,7 @@ export const renderChart = (
   const values = readings.map(({ value }) => value);
 
   const data = {
-    labels: labels,
+    labels,
     datasets: [
       {
         label: 'kWh usage',
@@ -53,7 +53,7 @@ export const renderChart = (
   if (canvas) {
     chart = new chartJs.Chart(canvas, {
       type: 'bar',
-      data: data,
+      data,
       options: {
         scales: {
           y: {

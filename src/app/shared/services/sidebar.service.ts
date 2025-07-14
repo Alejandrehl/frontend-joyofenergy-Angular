@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SidebarService {
-  private closeSidebarSubject = new Subject<void>();
-  closeSidebar$ = this.closeSidebarSubject.asObservable();
+  private readonly closeSidebarSubject = new Subject<void>();
 
-  closeSidebar() {
+  public get closeSidebar$(): Observable<void> {
+    return this.closeSidebarSubject.asObservable();
+  }
+
+  public closeSidebar(): void {
     this.closeSidebarSubject.next();
   }
-} 
+}

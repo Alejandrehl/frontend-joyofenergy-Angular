@@ -1,12 +1,14 @@
 import { EnergyReading } from '../models/energy-consumption.model';
 
-export const getReadings = async (length = 1200): Promise<EnergyReading[]> => {
+export const getReadings = (length = 1200): Promise<EnergyReading[]> => {
   const current = Date.now();
   const hour = 1000 * 60 * 60;
-  return Array.from({ length }, (_, index) => ({
-    time: current - index * hour,
-    value: Math.random() * 0.7 + 0.4,
-  }));
+  return Promise.resolve(
+    Array.from({ length }, (_, index) => ({
+      time: current - index * hour,
+      value: Math.random() * 0.7 + 0.4,
+    }))
+  );
 };
 
 export const groupByDay = (readings: EnergyReading[]): EnergyReading[] => {

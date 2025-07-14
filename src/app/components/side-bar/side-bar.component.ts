@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
   EnergyMetrics,
@@ -10,19 +10,24 @@ import { ApiService } from 'src/app/shared/services/api.service';
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
   styleUrls: ['./side-bar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SideBarComponent implements OnInit {
-  energyMetrics$: Observable<EnergyMetrics>;
-  deviceConsumptions$: Observable<DeviceConsumption[]>;
+  public energyMetrics$: Observable<EnergyMetrics>;
+  public deviceConsumptions$: Observable<DeviceConsumption[]>;
 
-  constructor(private apiService: ApiService) {}
+  public constructor(private readonly apiService: ApiService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.energyMetrics$ = this.apiService.getEnergyMetrics();
     this.deviceConsumptions$ = this.apiService.getDeviceConsumptions();
   }
 
-  asIsOrder(): number {
+  public asIsOrder(): number {
     return 1;
+  }
+
+  public trackByDevice(index: number, device: DeviceConsumption): string {
+    return device.name;
   }
 }

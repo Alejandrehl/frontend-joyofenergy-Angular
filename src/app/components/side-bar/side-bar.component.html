@@ -24,7 +24,10 @@
     <section class="devices-section">
       <h4 class="devices-title">Your devices:</h4>
       <ng-container *ngIf="deviceConsumptions$ | async as devices">
-        <div class="device-card" *ngFor="let device of devices">
+        <div
+          class="device-card"
+          *ngFor="let device of devices; trackBy: trackByDevice"
+        >
           <p class="device-name">{{ device.name }}</p>
           <p class="device-power">
             {{ device.power }}

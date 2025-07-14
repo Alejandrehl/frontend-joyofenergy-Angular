@@ -1,4 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { EnergyReading } from 'src/app/shared/models/energy-consumption.model';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { SidebarService } from 'src/app/shared/services/sidebar.service';
@@ -9,20 +14,21 @@ import { Subscription } from 'rxjs';
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainComponent implements OnInit, OnDestroy {
-  chartData: EnergyReading[] = [];
-  sidebarOpen: boolean = false;
-  private subscription: Subscription = new Subscription();
+  public chartData: EnergyReading[] = [];
+  public sidebarOpen = false;
+  private readonly subscription: Subscription = new Subscription();
 
-  constructor(
-    private sidebarService: SidebarService,
-    private apiService: ApiService
+  public constructor(
+    private readonly sidebarService: SidebarService,
+    private readonly apiService: ApiService
   ) {
     this.createChart();
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.subscription.add(
       this.sidebarService.closeSidebar$.subscribe(() => {
         this.closeSidebar();
@@ -30,11 +36,11 @@ export class MainComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-  createChart(): void {
+  public createChart(): void {
     this.subscription.add(
       this.apiService.getEnergyConsumptionData().subscribe(data => {
         const containerId = 'chart';
@@ -44,11 +50,11 @@ export class MainComponent implements OnInit, OnDestroy {
     );
   }
 
-  toggleSidebar(): void {
+  public toggleSidebar(): void {
     this.sidebarOpen = !this.sidebarOpen;
   }
 
-  closeSidebar(): void {
+  public closeSidebar(): void {
     this.sidebarOpen = false;
   }
 }

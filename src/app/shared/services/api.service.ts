@@ -12,23 +12,23 @@ import { EnergyService } from './energy.service';
   providedIn: 'root',
 })
 export class ApiService {
-  constructor(private energyService: EnergyService) {}
+  public constructor(private readonly energyService: EnergyService) {}
 
-  getEnergyReadings(length: number = 1200): Observable<EnergyReading[]> {
+  public getEnergyReadings(length = 1200): Observable<EnergyReading[]> {
     return this.energyService.getEnergyReadings(length);
   }
 
-  getEnergyConsumptionData(
-    length: number = 1200
+  public getEnergyConsumptionData(
+    length = 1200
   ): Observable<EnergyConsumptionData> {
     return this.energyService.getEnergyConsumptionData(length);
   }
 
-  getEnergyMetrics(): Observable<EnergyMetrics> {
+  public getEnergyMetrics(): Observable<EnergyMetrics> {
     return this.energyService.getEnergyMetrics();
   }
 
-  getDeviceConsumptions(): Observable<DeviceConsumption[]> {
+  public getDeviceConsumptions(): Observable<DeviceConsumption[]> {
     return this.energyService.getDeviceConsumptions();
   }
 }
