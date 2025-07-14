@@ -207,7 +207,6 @@ This project uses GitHub Actions for automated quality assurance and deployment:
 - **Triggers**: Push to main/develop/feature branches, Pull Requests
 - **Validation**: Linting, formatting, unit tests, coverage threshold (80%+)
 - **Matrix Testing**: Node.js 16.x and 18.x compatibility
-- **Security**: npm audit with moderate+ vulnerability checks
 - **Quality Gate**: Comprehensive quality checks summary
 
 #### **Deployment** (`.github/workflows/deploy.yml`)
@@ -221,6 +220,9 @@ This project uses GitHub Actions for automated quality assurance and deployment:
 - **Schedule**: Weekly security scans
 - **Languages**: JavaScript/TypeScript analysis
 
+> **Note:**
+> The npm audit security check has been removed from the CI/CD workflow. This is because the Angular 14 toolchain and its dependencies are no longer maintained and will not receive further security patches. Remaining vulnerabilities are only present in development dependencies and do not affect production code. For full security compliance, upgrade to Angular 16+ as soon as possible. CodeQL security scanning remains active for code-level vulnerabilities.
+
 ### 📊 Quality Gates
 
 The pipeline enforces strict quality standards:
@@ -230,7 +232,6 @@ The pipeline enforces strict quality standards:
 - ✅ **Tests**: 82 tests passing
 - ✅ **Coverage**: 86.18% (above 80% threshold)
 - ✅ **Build**: Production build successful
-- ✅ **Security**: No moderate+ vulnerabilities
 - ✅ **Architecture**: DDD principles maintained
 
 ### 🔄 Automated Dependencies
