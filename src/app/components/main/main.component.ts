@@ -25,7 +25,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
   public constructor(
     private readonly sidebarService: SidebarService,
-    private readonly energyApplicationService: EnergyApplicationService
+    private readonly energyApplicationService: EnergyApplicationService,
   ) {
     this.createChart();
   }
@@ -34,7 +34,7 @@ export class MainComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.sidebarService.closeSidebar$.subscribe(() => {
         this.closeSidebar();
-      })
+      }),
     );
   }
 
@@ -50,7 +50,7 @@ export class MainComponent implements OnInit, OnDestroy {
           const containerId = 'chart';
           this.chartData = data.readings;
           renderChart(containerId, data.readings.slice(-30));
-        })
+        }),
     );
   }
 

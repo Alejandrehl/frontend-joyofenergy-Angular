@@ -10,7 +10,7 @@ export class EnergyCalculationService {
 
     const total = readings.reduce(
       (sum, reading) => sum.add(reading.getEnergyValue()),
-      new EnergyValue(0)
+      new EnergyValue(0),
     );
 
     return total;

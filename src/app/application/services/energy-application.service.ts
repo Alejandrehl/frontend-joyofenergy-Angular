@@ -21,7 +21,7 @@ export interface EnergyConsumptionDataDto {
 export class EnergyApplicationService {
   public constructor(
     private readonly getReadingsUseCase: GetEnergyReadingsUseCase,
-    private readonly calculateMetricsUseCase: CalculateEnergyMetricsUseCase
+    private readonly calculateMetricsUseCase: CalculateEnergyMetricsUseCase,
   ) {}
 
   public getEnergyReadings(length = 1200): Observable<EnergyReadingDto[]> {
@@ -30,13 +30,13 @@ export class EnergyApplicationService {
         readings.map(reading => ({
           time: reading.getRawTimestamp(),
           value: reading.getRawValue(),
-        }))
-      )
+        })),
+      ),
     );
   }
 
   public getEnergyConsumptionData(
-    length = 1200
+    length = 1200,
   ): Observable<EnergyConsumptionDataDto> {
     return this.calculateMetricsUseCase.execute(length).pipe(
       map(data => ({
@@ -46,7 +46,7 @@ export class EnergyApplicationService {
         })),
         totalConsumption: data.totalConsumption,
         averageConsumption: data.averageConsumption,
-      }))
+      })),
     );
   }
 }

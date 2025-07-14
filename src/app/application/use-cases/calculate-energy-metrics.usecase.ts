@@ -20,14 +20,14 @@ export class CalculateEnergyMetricsUseCase {
   public constructor(
     @Inject(ENERGY_READING_REPOSITORY)
     private readonly repository: EnergyReadingRepository,
-    private readonly calculationService: EnergyCalculationService
+    private readonly calculationService: EnergyCalculationService,
   ) {}
 
   public execute(length = 1200): Observable<EnergyConsumptionData> {
     return from(this.repository.getReadings(length)).pipe(
       map(readings => {
         const groupedReadings = this.calculationService.sortReadingsByTime(
-          this.calculationService.groupReadingsByDay(readings)
+          this.calculationService.groupReadingsByDay(readings),
         );
         const totalConsumption = this.calculationService
           .calculateTotalConsumption(groupedReadings)
@@ -41,7 +41,7 @@ export class CalculateEnergyMetricsUseCase {
           totalConsumption,
           averageConsumption,
         };
-      })
+      }),
     );
   }
 }

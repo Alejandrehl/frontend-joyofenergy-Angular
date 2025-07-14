@@ -17,7 +17,7 @@ export class MockEnergyReadingRepository implements EnergyReadingRepository {
         const timestamp = new Timestamp(current - index * hour);
         const energyValue = new EnergyValue(Math.random() * 0.7 + 0.4);
         return new EnergyReading(timestamp, energyValue);
-      })
+      }),
     );
   }
 
@@ -36,7 +36,7 @@ export class MockEnergyReadingRepository implements EnergyReadingRepository {
         const timestamp = Timestamp.now();
         const energyValue = new EnergyValue(device.power);
         return new EnergyReading(timestamp, energyValue);
-      })
+      }),
     );
   }
 

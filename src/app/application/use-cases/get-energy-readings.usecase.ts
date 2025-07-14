@@ -14,7 +14,7 @@ export class GetEnergyReadingsUseCase {
   public constructor(
     @Inject(ENERGY_READING_REPOSITORY)
     private readonly repository: EnergyReadingRepository,
-    private readonly calculationService: EnergyCalculationService
+    private readonly calculationService: EnergyCalculationService,
   ) {}
 
   public execute(length = 1200): Observable<EnergyReading[]> {
@@ -25,7 +25,7 @@ export class GetEnergyReadingsUseCase {
     return from(
       this.repository
         .getReadings(length)
-        .then(readings => this.calculationService.groupReadingsByDay(readings))
+        .then(readings => this.calculationService.groupReadingsByDay(readings)),
     );
   }
 
@@ -33,7 +33,7 @@ export class GetEnergyReadingsUseCase {
     return from(
       this.repository
         .getReadings(length)
-        .then(readings => this.calculationService.sortReadingsByTime(readings))
+        .then(readings => this.calculationService.sortReadingsByTime(readings)),
     );
   }
 }

@@ -34,7 +34,7 @@ export class Timestamp {
     const dayStart = new Date(
       date.getFullYear(),
       date.getMonth(),
-      date.getDate()
+      date.getDate(),
     );
     return new Timestamp(dayStart.getTime());
   }

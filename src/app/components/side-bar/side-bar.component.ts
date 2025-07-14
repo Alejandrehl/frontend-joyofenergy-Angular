@@ -25,7 +25,7 @@ export class SideBarComponent implements OnInit {
   public deviceConsumptions$: Observable<DeviceConsumptionDto[]>;
 
   public constructor(
-    private readonly mockRepository: MockEnergyReadingRepository
+    private readonly mockRepository: MockEnergyReadingRepository,
   ) {}
 
   public ngOnInit(): void {

@@ -10,7 +10,7 @@ export class DeviceCategory {
   public constructor(private readonly value: string) {
     if (
       !DeviceCategory.VALID_CATEGORIES.includes(
-        value as (typeof DeviceCategory.VALID_CATEGORIES)[number]
+        value as (typeof DeviceCategory.VALID_CATEGORIES)[number],
       )
     ) {
       throw new Error(`Invalid device category: ${value}`);

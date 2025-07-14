@@ -5,7 +5,7 @@ export class DeviceConsumption {
   public constructor(
     private readonly name: string,
     private readonly power: EnergyValue,
-    private readonly category: DeviceCategory
+    private readonly category: DeviceCategory,
   ) {
     if (!name || name.trim().length === 0) {
       throw new Error('Device name cannot be empty');

@@ -4,7 +4,7 @@ import { Timestamp } from '../value-objects/timestamp.vo';
 export class EnergyReading {
   public constructor(
     private readonly timestamp: Timestamp,
-    private readonly energyValue: EnergyValue
+    private readonly energyValue: EnergyValue,
   ) {}
 
   public getTimestamp(): Timestamp {
