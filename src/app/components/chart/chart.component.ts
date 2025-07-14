@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Data } from 'src/app/shared/models/dataModel';
+import { EnergyReading } from 'src/app/shared/models/energy-consumption.model';
 
 @Component({
   selector: 'app-chart',
@@ -7,7 +7,7 @@ import { Data } from 'src/app/shared/models/dataModel';
   styleUrls: ['./chart.component.scss'],
 })
 export class ChartComponent {
-  chart: any;
-  @Input() chartData: Data[] = [];
+  chart: unknown;
+  @Input() chartData: EnergyReading[] = [];
   constructor() {}
 }

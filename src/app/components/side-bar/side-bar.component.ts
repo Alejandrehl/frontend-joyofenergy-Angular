@@ -1,31 +1,28 @@
-import { Component } from '@angular/core';
-import { of } from 'rxjs';
-import { Observable } from 'rxjs/internal/Observable';
-import { Data } from 'src/app/shared/models/dataModel';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import {
+  EnergyMetrics,
+  DeviceConsumption,
+} from 'src/app/shared/models/energy-consumption.model';
+import { ApiService } from 'src/app/shared/services/api.service';
 
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
   styleUrls: ['./side-bar.component.scss'],
 })
-export class SideBarComponent {
-  energyConsumptionMap = new Map<string, string>([
-    ['⚡️ 1.4kW', 'Power draw'],
-    ['☀️️ 5.8kW', 'Solar power production'],
-    ['🔌️ 4.4kW', 'Fed into grid'],
-  ]);
-  devicesMap = new Map<string, string>([
-    ['Air conditioner', '0.3093kW'],
-    ['Wi-Fi router', '0.0033kW'],
-    ['Humidifer', '0.0518kW'],
-    ['Smart TV', '0.1276kW'],
-    ['Diffuser', '0.0078kW'],
-    ['Refrigerator', '0.0923kW'],
-  ]);
+export class SideBarComponent implements OnInit {
+  energyMetrics$: Observable<EnergyMetrics>;
+  deviceConsumptions$: Observable<DeviceConsumption[]>;
 
-  constructor() {}
+  constructor(private apiService: ApiService) {}
 
-  asIsOrder(a, b) {
+  ngOnInit(): void {
+    this.energyMetrics$ = this.apiService.getEnergyMetrics();
+    this.deviceConsumptions$ = this.apiService.getDeviceConsumptions();
+  }
+
+  asIsOrder(): number {
     return 1;
   }
 }

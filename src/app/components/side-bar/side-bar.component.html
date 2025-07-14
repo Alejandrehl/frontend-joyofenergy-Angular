@@ -1,28 +1,36 @@
 <div class="sidebar-content">
   <div class="sidebar-inner">
-    <div
-      class="energy-card"
-      *ngFor="let energyField of energyConsumptionMap | keyvalue: asIsOrder"
-    >
-      <div class="energy-label">
-        {{ energyField.key }}
+    <ng-container *ngIf="energyMetrics$ | async as energyMetrics">
+      <div class="energy-card">
+        <div class="energy-label">
+          {{ energyMetrics.powerDraw }}
+        </div>
+        <div class="energy-value">Power draw</div>
       </div>
-      <div class="energy-value">
-        {{ energyField.value }}
+      <div class="energy-card">
+        <div class="energy-label">
+          {{ energyMetrics.solarProduction }}
+        </div>
+        <div class="energy-value">Solar power production</div>
       </div>
-    </div>
-    
+      <div class="energy-card">
+        <div class="energy-label">
+          {{ energyMetrics.gridFeed }}
+        </div>
+        <div class="energy-value">Fed into grid</div>
+      </div>
+    </ng-container>
+
     <section class="devices-section">
       <h4 class="devices-title">Your devices:</h4>
-      <div
-        class="device-card"
-        *ngFor="let device of devicesMap | keyvalue"
-      >
-        <p class="device-name">{{ device.key }}</p>
-        <p class="device-power">
-          {{ device.value }}
-        </p>
-      </div>
+      <ng-container *ngIf="deviceConsumptions$ | async as devices">
+        <div class="device-card" *ngFor="let device of devices">
+          <p class="device-name">{{ device.name }}</p>
+          <p class="device-power">
+            {{ device.power }}
+          </p>
+        </div>
+      </ng-container>
     </section>
   </div>
 </div>
