@@ -1,6 +1,37 @@
 {
   "name": "angular-frontend-developer-joyofenergy",
   "version": "0.0.0",
+  "description": "Modern Angular 14 energy monitoring dashboard with real-time charts, built using Domain-Driven Design (DDD) principles",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Alejandrehl/frontend-joyofenergy-Angular.git"
+  },
+  "homepage": "https://alejandrehl.github.io/frontend-joyofenergy-Angular",
+  "keywords": [
+    "angular",
+    "typescript",
+    "domain-driven-design",
+    "ddd",
+    "energy-monitoring",
+    "dashboard",
+    "chartjs",
+    "responsive-design",
+    "testing",
+    "jasmine",
+    "karma",
+    "eslint",
+    "prettier",
+    "husky",
+    "github-actions",
+    "ci-cd",
+    "scss",
+    "basscss",
+    "mock-data",
+    "clean-architecture",
+    "solid-principles"
+  ],
+  "author": "Alejandrehl",
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

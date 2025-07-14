@@ -98,5 +98,5 @@ jobs:
         echo "✅ Coverage: 86.18%"
         echo ""
         echo "🚀 Application deployed successfully!"
-        echo "📱 Available at: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}"
+        echo "📱 Available at: https://alejandrehl.github.io/frontend-joyofenergy-Angular"
         echo "📦 Release: v${{ github.run_number }}" 

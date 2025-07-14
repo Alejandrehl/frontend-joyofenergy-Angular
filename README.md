@@ -1,6 +1,14 @@
 # JOI Energy - Angular Frontend
 
+[![CI/CD Pipeline](https://github.com/Alejandrehl/frontend-joyofenergy-Angular/workflows/CI%2FCD%20Pipeline/badge.svg)](https://github.com/Alejandrehl/frontend-joyofenergy-Angular/actions)
+[![Deploy to Production](https://github.com/Alejandrehl/frontend-joyofenergy-Angular/workflows/Deploy%20to%20Production/badge.svg)](https://github.com/Alejandrehl/frontend-joyofenergy-Angular/actions)
+[![CodeQL](https://github.com/Alejandrehl/frontend-joyofenergy-Angular/workflows/CodeQL/badge.svg)](https://github.com/Alejandrehl/frontend-joyofenergy-Angular/security/code-scanning)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-blue?style=flat&logo=github)](https://alejandrehl.github.io/frontend-joyofenergy-Angular)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A modern, responsive Angular 14 application for energy consumption monitoring with real-time charts and device management, built using **Domain-Driven Design (DDD)** principles.
+
+**🌐 Live Demo**: [https://alejandrehl.github.io/frontend-joyofenergy-Angular](https://alejandrehl.github.io/frontend-joyofenergy-Angular)
 
 ## 🚀 Features
 
@@ -11,7 +19,7 @@ A modern, responsive Angular 14 application for energy consumption monitoring wi
 - **Mobile-First UX**: Hamburger menu with slide-out sidebar for mobile devices
 - **Domain-Driven Design**: Clean architecture with separation of concerns
 - **Mock Data System**: Simulated energy data for development and testing
-- **Comprehensive Testing**: 86.18% code coverage with 82 unit tests
+- **Comprehensive Testing**: 90.06% code coverage with 82 unit tests
 - **Code Quality**: ESLint + Prettier + Husky pre-commit hooks
 
 ## 🛠️ Technologies
@@ -21,7 +29,7 @@ A modern, responsive Angular 14 application for energy consumption monitoring wi
 - **Styling**: SCSS + BassCSS (utility-first CSS framework)
 - **Charts**: Chart.js 3.2.1
 - **Code Quality**: ESLint + Prettier v3 + Husky + lint-staged
-- **Testing**: Jasmine + Karma with 86.18% coverage
+- **Testing**: Jasmine + Karma with 90.06% coverage
 - **Architecture**: Domain-Driven Design (DDD)
 - **Package Manager**: npm
 
@@ -34,10 +42,10 @@ A modern, responsive Angular 14 application for energy consumption monitoring wi
 - **TypeScript**: Strict mode enabled, no `any` types allowed
 
 ### ✅ Testing Coverage
-- **Statements**: 86.18% (131/152) ✅
+- **Statements**: 90.06% (136/151) ✅
 - **Branches**: 61.9% (13/21) ✅
-- **Functions**: 84.21% (64/76) ✅
-- **Lines**: 86.39% (127/147) ✅
+- **Functions**: 88.15% (67/76) ✅
+- **Lines**: 90.41% (132/146) ✅
 - **Total Tests**: 82 tests passing ✅
 
 ### ✅ Architecture
@@ -155,7 +163,7 @@ The application is fully responsive with optimized layouts for different screen 
 1. **Clone the repository**
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Alejandrehl/frontend-joyofenergy-Angular.git
    cd frontend-joyofenergy-Angular
    ```
 
@@ -230,7 +238,7 @@ The pipeline enforces strict quality standards:
 - ✅ **Linting**: ESLint passes with no errors/warnings
 - ✅ **Formatting**: Prettier compliance
 - ✅ **Tests**: 82 tests passing
-- ✅ **Coverage**: 86.18% (above 80% threshold)
+- ✅ **Coverage**: 90.06% (above 80% threshold)
 - ✅ **Build**: Production build successful
 - ✅ **Architecture**: DDD principles maintained
 
@@ -426,6 +434,11 @@ npm run build
 
 - **Development**: `environment.ts`
 - **Production**: `environment.prod.ts`
+
+### Live Demo
+
+- **🌐 GitHub Pages**: [https://alejandrehl.github.io/frontend-joyofenergy-Angular](https://alejandrehl.github.io/frontend-joyofenergy-Angular)
+- **📱 Repository**: [https://github.com/Alejandrehl/frontend-joyofenergy-Angular](https://github.com/Alejandrehl/frontend-joyofenergy-Angular)
 
 ## 📝 Contributing
 
