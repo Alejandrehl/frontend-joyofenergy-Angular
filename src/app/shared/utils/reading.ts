@@ -7,7 +7,7 @@ export const getReadings = (length = 1200): Promise<EnergyReading[]> => {
     Array.from({ length }, (_, index) => ({
       time: current - index * hour,
       value: Math.random() * 0.7 + 0.4,
-    }))
+    })),
   );
 };
 
@@ -17,7 +17,7 @@ export const groupByDay = (readings: EnergyReading[]): EnergyReading[] => {
     const day = new Date(
       readingDate.getFullYear(),
       readingDate.getMonth(),
-      readingDate.getDate()
+      readingDate.getDate(),
     ).getTime();
     if (!curr[day]) curr[day] = 0;
     curr[day] += value;
@@ -32,6 +32,6 @@ export const groupByDay = (readings: EnergyReading[]): EnergyReading[] => {
 
 export const sortByTime = (readings: EnergyReading[]): EnergyReading[] => {
   return [...readings].sort(
-    (readingA, readingB) => readingA.time - readingB.time
+    (readingA, readingB) => readingA.time - readingB.time,
   );
 };

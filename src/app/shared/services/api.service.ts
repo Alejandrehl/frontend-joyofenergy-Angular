@@ -19,7 +19,7 @@ export class ApiService {
   }
 
   public getEnergyConsumptionData(
-    length = 1200
+    length = 1200,
   ): Observable<EnergyConsumptionData> {
     return this.energyService.getEnergyConsumptionData(length);
   }

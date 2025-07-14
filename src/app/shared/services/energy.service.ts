@@ -24,14 +24,14 @@ export class EnergyService {
   }
 
   public getEnergyConsumptionData(
-    length = 1200
+    length = 1200,
   ): Observable<EnergyConsumptionData> {
     return new Observable(observer => {
       void getReadings(length).then(readings => {
         const groupedReadings = sortByTime(groupByDay(readings));
         const totalConsumption = groupedReadings.reduce(
           (sum, reading) => sum + reading.value,
-          0
+          0,
         );
         const averageConsumption = totalConsumption / groupedReadings.length;
 

@@ -17,13 +17,13 @@ export const formatDateLabel = (timestamp: number): string => {
 
 export const renderChart = (
   containerId: string,
-  readings: EnergyReading[]
+  readings: EnergyReading[],
 ): void => {
   chartJs.Chart.defaults.font.size = 10;
 
   chartJs.Chart.register.apply(
     null,
-    Object.values(chartJs).filter(chartClass => 'id' in chartClass)
+    Object.values(chartJs).filter(chartClass => 'id' in chartClass),
   );
 
   const labels = readings.map(({ time }) => formatDateLabel(time));
