@@ -6,6 +6,8 @@ import {
 } from '../../application/services/energy-application.service';
 import { SidebarService } from '../../shared/services/sidebar.service';
 import { MainComponent } from './main.component';
+import { SideBarComponent } from '../side-bar/side-bar.component';
+import { ChartComponent } from '../chart/chart.component';
 
 describe('MainComponent', () => {
   let component: MainComponent;
@@ -34,7 +36,7 @@ describe('MainComponent', () => {
     );
 
     await TestBed.configureTestingModule({
-      declarations: [MainComponent],
+      declarations: [MainComponent, SideBarComponent, ChartComponent],
       providers: [
         { provide: EnergyApplicationService, useValue: energyAppServiceSpy },
         { provide: SidebarService, useValue: sidebarServiceSpy },
