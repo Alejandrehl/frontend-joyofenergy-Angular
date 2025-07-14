@@ -30,7 +30,7 @@
     "clean-architecture",
     "solid-principles"
   ],
-  "author": "Alejandrehl",
+  "author": "Alejandro Exequiel Hernández Lara",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
