@@ -1,5 +1,5 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import { EnergyReading } from 'src/app/shared/models/energy-consumption.model';
+import { EnergyReadingDto } from '../../application/services/energy-application.service';
 
 @Component({
   selector: 'app-chart',
@@ -8,6 +8,6 @@ import { EnergyReading } from 'src/app/shared/models/energy-consumption.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChartComponent {
-  @Input() public chartData: EnergyReading[] = [];
+  @Input() public chartData: EnergyReadingDto[] = [];
   public chart: unknown;
 }

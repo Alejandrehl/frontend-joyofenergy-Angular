@@ -1,10 +1,18 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
-import {
-  EnergyMetrics,
-  DeviceConsumption,
-} from 'src/app/shared/models/energy-consumption.model';
-import { ApiService } from 'src/app/shared/services/api.service';
+import { MockEnergyReadingRepository } from '../../infrastructure/repositories/mock-energy-reading.repository';
+
+export interface EnergyMetricsDto {
+  powerDraw: string;
+  solarProduction: string;
+  gridFeed: string;
+}
+
+export interface DeviceConsumptionDto {
+  name: string;
+  power: string;
+  category: string;
+}
 
 @Component({
   selector: 'app-side-bar',
@@ -13,21 +21,42 @@ import { ApiService } from 'src/app/shared/services/api.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SideBarComponent implements OnInit {
-  public energyMetrics$: Observable<EnergyMetrics>;
-  public deviceConsumptions$: Observable<DeviceConsumption[]>;
+  public energyMetrics$: Observable<EnergyMetricsDto>;
+  public deviceConsumptions$: Observable<DeviceConsumptionDto[]>;
 
-  public constructor(private readonly apiService: ApiService) {}
+  public constructor(
+    private readonly mockRepository: MockEnergyReadingRepository
+  ) {}
 
   public ngOnInit(): void {
-    this.energyMetrics$ = this.apiService.getEnergyMetrics();
-    this.deviceConsumptions$ = this.apiService.getDeviceConsumptions();
+    this.energyMetrics$ = new Observable(observer => {
+      void this.mockRepository.getEnergyMetrics().then(metrics => {
+        observer.next(metrics);
+        observer.complete();
+      });
+    });
+
+    this.deviceConsumptions$ = new Observable(observer => {
+      void this.mockRepository.getDeviceConsumptions().then(() => {
+        const devices: DeviceConsumptionDto[] = [
+          { name: 'Air conditioner', power: '0.3093kW', category: 'HVAC' },
+          { name: 'Wi-Fi router', power: '0.0033kW', category: 'Electronics' },
+          { name: 'Humidifer', power: '0.0518kW', category: 'HVAC' },
+          { name: 'Smart TV', power: '0.1276kW', category: 'Entertainment' },
+          { name: 'Diffuser', power: '0.0078kW', category: 'Home' },
+          { name: 'Refrigerator', power: '0.0923kW', category: 'Appliances' },
+        ];
+        observer.next(devices);
+        observer.complete();
+      });
+    });
   }
 
   public asIsOrder(): number {
     return 1;
   }
 
-  public trackByDevice(index: number, device: DeviceConsumption): string {
+  public trackByDevice(index: number, device: DeviceConsumptionDto): string {
     return device.name;
   }
 }

@@ -4,11 +4,13 @@ import {
   OnDestroy,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { EnergyReading } from 'src/app/shared/models/energy-consumption.model';
-import { ApiService } from 'src/app/shared/services/api.service';
-import { SidebarService } from 'src/app/shared/services/sidebar.service';
-import { renderChart } from '../../shared/utils/chart';
 import { Subscription } from 'rxjs';
+import {
+  EnergyApplicationService,
+  EnergyReadingDto,
+} from '../../application/services/energy-application.service';
+import { SidebarService } from '../../shared/services/sidebar.service';
+import { renderChart } from '../../shared/utils/chart';
 
 @Component({
   selector: 'app-main',
@@ -17,13 +19,13 @@ import { Subscription } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainComponent implements OnInit, OnDestroy {
-  public chartData: EnergyReading[] = [];
+  public chartData: EnergyReadingDto[] = [];
   public sidebarOpen = false;
   private readonly subscription: Subscription = new Subscription();
 
   public constructor(
     private readonly sidebarService: SidebarService,
-    private readonly apiService: ApiService,
+    private readonly energyApplicationService: EnergyApplicationService
   ) {
     this.createChart();
   }
@@ -32,7 +34,7 @@ export class MainComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.sidebarService.closeSidebar$.subscribe(() => {
         this.closeSidebar();
-      }),
+      })
     );
   }
 
@@ -42,11 +44,13 @@ export class MainComponent implements OnInit, OnDestroy {
 
   public createChart(): void {
     this.subscription.add(
-      this.apiService.getEnergyConsumptionData().subscribe(data => {
-        const containerId = 'chart';
-        this.chartData = data.readings;
-        renderChart(containerId, data.readings.slice(-30));
-      }),
+      this.energyApplicationService
+        .getEnergyConsumptionData()
+        .subscribe(data => {
+          const containerId = 'chart';
+          this.chartData = data.readings;
+          renderChart(containerId, data.readings.slice(-30));
+        })
     );
   }
 

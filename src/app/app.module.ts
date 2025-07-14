@@ -7,10 +7,16 @@ import { MainComponent } from './components/main/main.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DomainModule } from './domain/domain.module';
 
 @NgModule({
   declarations: [AppComponent, MainComponent, SideBarComponent, ChartComponent],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    DomainModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

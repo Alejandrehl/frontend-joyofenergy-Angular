@@ -1,5 +1,5 @@
 import * as chartJs from 'chart.js';
-import { EnergyReading } from '../models/energy-consumption.model';
+import { EnergyReadingDto } from '../../application/services/energy-application.service';
 
 let chart: chartJs.Chart | null = null;
 
@@ -17,13 +17,13 @@ export const formatDateLabel = (timestamp: number): string => {
 
 export const renderChart = (
   containerId: string,
-  readings: EnergyReading[],
+  readings: EnergyReadingDto[]
 ): void => {
   chartJs.Chart.defaults.font.size = 10;
 
   chartJs.Chart.register.apply(
     null,
-    Object.values(chartJs).filter(chartClass => 'id' in chartClass),
+    Object.values(chartJs).filter(chartClass => 'id' in chartClass)
   );
 
   const labels = readings.map(({ time }) => formatDateLabel(time));
