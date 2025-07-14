@@ -197,6 +197,63 @@ npm test               # Run unit tests
 npm test -- --watch=false --code-coverage  # Run tests with coverage report
 ```
 
+## 🚀 CI/CD Pipeline
+
+This project uses GitHub Actions for automated quality assurance and deployment:
+
+### 🔄 Automated Workflows
+
+#### **CI/CD Pipeline** (`.github/workflows/ci.yml`)
+- **Triggers**: Push to main/develop/feature branches, Pull Requests
+- **Validation**: Linting, formatting, unit tests, coverage threshold (80%+)
+- **Matrix Testing**: Node.js 16.x and 18.x compatibility
+- **Security**: npm audit with moderate+ vulnerability checks
+- **Quality Gate**: Comprehensive quality checks summary
+
+#### **Deployment** (`.github/workflows/deploy.yml`)
+- **Triggers**: Push to main branch, successful CI completion
+- **Build**: Production build with optimization
+- **Deploy**: Automatic deployment to GitHub Pages
+- **Release**: Automated release creation with detailed changelog
+
+#### **Security Scanning** (`.github/workflows/codeql.yml`)
+- **CodeQL Analysis**: Automated security vulnerability detection
+- **Schedule**: Weekly security scans
+- **Languages**: JavaScript/TypeScript analysis
+
+### 📊 Quality Gates
+
+The pipeline enforces strict quality standards:
+
+- ✅ **Linting**: ESLint passes with no errors/warnings
+- ✅ **Formatting**: Prettier compliance
+- ✅ **Tests**: 82 tests passing
+- ✅ **Coverage**: 86.18% (above 80% threshold)
+- ✅ **Build**: Production build successful
+- ✅ **Security**: No moderate+ vulnerabilities
+- ✅ **Architecture**: DDD principles maintained
+
+### 🔄 Automated Dependencies
+
+#### **Dependabot** (`.github/dependabot.yml`)
+- **Schedule**: Weekly updates (Mondays 9:00 AM)
+- **Ecosystems**: npm, GitHub Actions
+- **Safety**: Ignores major version updates for critical dependencies
+- **Automation**: Auto-assigns and labels PRs
+
+### 📋 Issue & PR Templates
+
+#### **Pull Request Template** (`.github/pull_request_template.md`)
+- Comprehensive checklist for quality assurance
+- DDD architecture compliance verification
+- Testing and security requirements
+- UI/UX and accessibility guidelines
+
+#### **Issue Templates** (`.github/ISSUE_TEMPLATE/`)
+- **Bug Reports**: Structured bug reporting with environment details
+- **Feature Requests**: Impact assessment and architecture considerations
+- **Contact Links**: Direct links to documentation and discussions
+
 ### Code Quality Tools
 
 This project uses several tools to ensure code quality and consistency:
