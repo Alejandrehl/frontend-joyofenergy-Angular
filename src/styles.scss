@@ -6,7 +6,8 @@
 }
 
 // Ensure full viewport coverage
-html, body {
+html,
+body {
   margin: 0 !important;
   padding: 0 !important;
   height: 100vh !important;
@@ -30,7 +31,15 @@ html {
 }
 
 // Allow text selection for content areas
-p, h1, h2, h3, h4, h5, h6, span, div {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+div {
   -webkit-user-select: text;
   -moz-user-select: text;
   -ms-user-select: text;
@@ -69,7 +78,7 @@ p, h1, h2, h3, h4, h5, h6, span, div {
   .md-hide {
     display: none !important;
   }
-  
+
   .md-show {
     display: block !important;
   }
@@ -77,30 +86,30 @@ p, h1, h2, h3, h4, h5, h6, span, div {
 
 // Improve touch targets on mobile
 @media (max-width: 767px) {
-  button, 
-  [role="button"] {
+  button,
+  [role='button'] {
     min-height: 44px;
     min-width: 44px;
   }
-  
+
   // Improve text readability
   body {
     font-size: 16px; // Prevents zoom on iOS
   }
-  
+
   // Better spacing for mobile
   .p2 {
     padding: 0.75rem;
   }
-  
+
   .p3 {
     padding: 1rem;
   }
-  
+
   .m2 {
     margin: 0.75rem;
   }
-  
+
   .m3 {
     margin: 1rem;
   }
@@ -111,19 +120,16 @@ p, h1, h2, h3, h4, h5, h6, span, div {
   .p2 {
     padding: 0.5rem;
   }
-  
+
   .p3 {
     padding: 0.75rem;
   }
-  
+
   .m2 {
     margin: 0.5rem;
   }
-  
+
   .m3 {
     margin: 0.75rem;
   }
 }
-
-
-
