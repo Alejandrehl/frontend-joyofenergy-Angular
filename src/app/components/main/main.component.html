@@ -1,16 +1,18 @@
 <div class="background shadow-2 flex overflow-hidden">
     <!-- Mobile header bar -->
     <div class="mobile-header md-hide">
-      <button 
-        class="hamburger-menu" 
-        [class.active]="sidebarOpen"
-        (click)="toggleSidebar()"
-        aria-label="Toggle menu">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-      </button>
-      <h1 class="mobile-title">Energy Dashboard</h1>
+      <div class="header-content">
+        <button 
+          class="hamburger-menu" 
+          [class.active]="sidebarOpen"
+          (click)="toggleSidebar()"
+          aria-label="Toggle menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <h1 class="mobile-title">Energy Dashboard</h1>
+      </div>
     </div>
     
     <!-- Sidebar with overlay -->

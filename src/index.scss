@@ -118,90 +118,115 @@ html {
   top: 0;
   left: 0;
   right: 0;
-  height: 60px;
+  height: 64px;
   background: white;
   border-bottom: 1px solid rgb(225, 225, 225);
+  z-index: 1002;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
   display: flex;
   align-items: center;
-  padding: 0 1rem;
-  z-index: 1002;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  padding: 0 16px;
+  max-width: 100%;
 }
 
 .mobile-title {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 600;
-  color: rgb(109, 109, 109);
-  margin-left: 1rem;
+  color: rgb(51, 51, 51);
+  margin: 0;
+  margin-left: 16px;
   flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-// Hamburger menu styles (updated for header)
+// Hamburger menu styles (refined)
 .hamburger-menu {
   background: none;
   border: none;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 44px;
-  height: 44px;
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  transition: all 0.3s ease;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
 }
 
 .hamburger-menu:hover {
   background: rgb(245, 245, 245);
 }
 
+.hamburger-menu:active {
+  background: rgb(235, 235, 235);
+  transform: scale(0.95);
+}
+
 .hamburger-line {
-  width: 20px;
+  width: 24px;
   height: 2px;
-  background-color: rgb(109, 109, 109);
-  transition: all 0.3s ease;
+  background-color: rgb(51, 51, 51);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 1px;
+  margin: 2px 0;
+  transform-origin: center;
 }
 
 .hamburger-menu.active .hamburger-line:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
+  transform: rotate(45deg) translate(6px, 6px);
 }
 
 .hamburger-menu.active .hamburger-line:nth-child(2) {
   opacity: 0;
+  transform: scale(0);
 }
 
 .hamburger-menu.active .hamburger-line:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -6px);
+  transform: rotate(-45deg) translate(6px, -6px);
 }
 
 // Sidebar close button
 .sidebar-close {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: none;
+  top: 16px;
+  right: 16px;
+  background: rgb(245, 245, 245);
   border: none;
   font-size: 1.5rem;
   color: rgb(109, 109, 109);
   cursor: pointer;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar-close:hover {
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(235, 235, 235);
   color: rgb(80, 80, 80);
+  transform: scale(1.05);
+}
+
+.sidebar-close:active {
+  transform: scale(0.95);
 }
 
 .close-icon {
   line-height: 1;
   font-weight: bold;
+  font-size: 1.25rem;
 }
 
 // Sidebar overlay
@@ -211,11 +236,13 @@ html {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   z-index: 999;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sidebar-overlay.active {
@@ -239,18 +266,98 @@ html {
 
 // Sidebar styles
 .sidebar {
-  width: 300px;
-  min-width: 300px;
+  width: 320px;
+  min-width: 320px;
   background-color: white;
   border-right: 1px solid rgb(225, 225, 225);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1000;
   height: 100vh;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar-content {
   height: 100%;
   position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sidebar-inner {
+  padding: 24px 20px;
+}
+
+// Energy cards in sidebar
+.energy-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgb(240, 240, 240);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.energy-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+}
+
+.energy-label {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: rgb(130, 116, 182);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.energy-value {
+  font-size: 1rem;
+  color: rgb(109, 109, 109);
+  font-weight: 500;
+}
+
+// Devices section
+.devices-section {
+  margin-top: 32px;
+}
+
+.devices-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: rgb(51, 51, 51);
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.device-card {
+  background: rgb(248, 248, 248);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border: 1px solid rgb(235, 235, 235);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.device-card:hover {
+  background: rgb(245, 245, 245);
+  border-color: rgb(225, 225, 225);
+}
+
+.device-name {
+  font-size: 0.875rem;
+  color: rgb(109, 109, 109);
+  margin: 0;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.device-power {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgb(51, 51, 51);
+  margin: 0;
+  line-height: 1.3;
 }
 
 .main-content {
@@ -263,19 +370,19 @@ html {
 // Responsive styles
 @media (max-width: 767px) {
   .background {
-    margin-top: 60px; // Space for mobile header
-    height: calc(100vh - 60px);
+    margin-top: 64px; // Space for mobile header
+    height: calc(100vh - 64px);
   }
 
   .sidebar {
     position: fixed;
-    top: 60px; // Below mobile header
-    left: -300px;
-    height: calc(100vh - 60px);
+    top: 64px; // Below mobile header
+    left: -320px;
+    height: calc(100vh - 64px);
     width: 280px;
     min-width: 280px;
     border-right: none;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 4px 0 16px rgba(0, 0, 0, 0.15);
     transform: translateX(-100%);
   }
 
@@ -284,7 +391,7 @@ html {
   }
 
   .main-content {
-    height: calc(100vh - 60px);
+    height: calc(100vh - 64px);
   }
 
   .chartHeight {
@@ -292,28 +399,69 @@ html {
   }
 
   .energy-card {
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border-radius: 0.5rem;
-    background-color: white;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+  }
+
+  .energy-label {
+    font-size: 1.125rem;
+  }
+
+  .energy-value {
+    font-size: 0.875rem;
+  }
+
+  .devices-title {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+
+  .device-card {
+    padding: 12px;
+    margin-bottom: 8px;
+  }
+
+  .device-name {
+    font-size: 0.8125rem;
+  }
+
+  .device-power {
+    font-size: 0.875rem;
   }
 
   .sidebar-close {
     top: 0.5rem;
     right: 0.5rem;
   }
+
+  .sidebar-overlay {
+    top: 64px;
+    height: calc(100% - 64px);
+  }
 }
 
 @media (max-width: 480px) {
   .mobile-header {
     height: 56px;
-    padding: 0 0.75rem;
+  }
+
+  .header-content {
+    padding: 0 12px;
   }
 
   .mobile-title {
-    font-size: 1.125rem;
-    margin-left: 0.75rem;
+    font-size: 1rem;
+    margin-left: 12px;
+  }
+
+  .hamburger-menu {
+    width: 44px;
+    height: 44px;
+  }
+
+  .hamburger-line {
+    width: 20px;
   }
 
   .background {
@@ -337,12 +485,30 @@ html {
   }
 
   .energy-card {
-    padding: 0.75rem;
-    margin-bottom: 0.75rem;
+    padding: 14px;
+    margin-bottom: 10px;
+  }
+
+  .energy-label {
+    font-size: 1rem;
+  }
+
+  .devices-title {
+    font-size: 0.9375rem;
+  }
+
+  .device-card {
+    padding: 10px;
+    margin-bottom: 6px;
   }
 
   .sidebar-close {
     top: 0.25rem;
     right: 0.25rem;
+  }
+
+  .sidebar-overlay {
+    top: 56px;
+    height: calc(100% - 56px);
   }
 }

@@ -14,6 +14,29 @@ html, body {
   overflow-x: hidden;
 }
 
+// Smooth scrolling
+html {
+  scroll-behavior: smooth;
+}
+
+// Touch improvements
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+// Allow text selection for content areas
+p, h1, h2, h3, h4, h5, h6, span, div {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
 // Ensure proper flex behavior
 .flex {
   display: flex;

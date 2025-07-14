@@ -1,4 +1,4 @@
-<div class="sidebar-content p2 md-p3 overflow-auto">
+<div class="sidebar-content">
   <!-- Close button for mobile -->
   <button 
     class="sidebar-close md-hide" 
@@ -7,28 +7,30 @@
     <span class="close-icon">×</span>
   </button>
   
-  <div
-    class="energy-card mb2 md-mb3"
-    *ngFor="let energyField of energyConsumptionMap | keyvalue: asIsOrder"
-  >
-    <div class="h3 md-h2 greyBlue">
-      {{ energyField.key }}
+  <div class="sidebar-inner">
+    <div
+      class="energy-card"
+      *ngFor="let energyField of energyConsumptionMap | keyvalue: asIsOrder"
+    >
+      <div class="energy-label">
+        {{ energyField.key }}
+      </div>
+      <div class="energy-value">
+        {{ energyField.value }}
+      </div>
     </div>
-    <div class="darkgray mb1 md-mb2">
-      {{ energyField.value }}
-    </div>
+    
+    <section class="devices-section">
+      <h4 class="devices-title">Your devices:</h4>
+      <div
+        class="device-card"
+        *ngFor="let device of devicesMap | keyvalue"
+      >
+        <p class="device-name">{{ device.key }}</p>
+        <p class="device-power">
+          {{ device.value }}
+        </p>
+      </div>
+    </section>
   </div>
-  <section class="h6 md-h5 darkgray mb2">
-
-  <h4 class="h5 md-h4 mb1">Your devices:</h4>
-  <div
-    class="shadow-2 roundedMore bg-super-light-grey mb1"
-    *ngFor="let device of devicesMap | keyvalue"
-  >
-    <p class="darkgray pl1 md-pl2 pt1 pb1">{{ device.key }}</p>
-    <p class="h6 md-h5 darkgray bold pl1 md-pl2 pb1 pt1 bg-very-light-grey">
-      {{ device.value }}
-    </p>
-  </div>
-</section>
 </div>
