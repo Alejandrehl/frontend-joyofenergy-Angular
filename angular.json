@@ -23,15 +23,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss",
-              "src/index.scss",
-              "src/basscss.scss"       
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/basscss.scss", "src/index.scss", "src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -93,19 +86,29 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [ 
-              "src/styles.scss",
-              "src/index.scss",
-              "src/basscss.scss"
-            ],
-            "scripts": []
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/basscss.scss", "src/index.scss", "src/styles.scss"],
+            "scripts": [],
+            "codeCoverage": true,
+            "codeCoverageExclude": [
+              "src/test.ts",
+              "src/polyfills.ts",
+              "src/**/*.module.ts",
+              "src/**/*.spec.ts",
+              "src/**/*.mock.ts"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

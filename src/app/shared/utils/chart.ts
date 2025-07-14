@@ -1,0 +1,79 @@
+import * as chartJs from 'chart.js';
+import { EnergyReadingDto } from '../../application/services/energy-application.service';
+
+let chart: chartJs.Chart | null = null;
+
+export const formatDateLabel = (timestamp: number): string => {
+  const date = new Date(timestamp);
+  const month = date.getMonth();
+  const day = date.getDate();
+
+  const formatPart = (value: number): string => {
+    return value < 10 ? `0${value}` : `${value}`;
+  };
+
+  return `${formatPart(day)}/${formatPart(month + 1)}`;
+};
+
+export const renderChart = (
+  containerId: string,
+  readings: EnergyReadingDto[],
+): void => {
+  chartJs.Chart.defaults.font.size = 10;
+
+  chartJs.Chart.register.apply(
+    null,
+    Object.values(chartJs).filter(chartClass => 'id' in chartClass),
+  );
+
+  const labels = readings.map(({ time }) => formatDateLabel(time));
+  const values = readings.map(({ value }) => value);
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: 'kWh usage',
+        data: values,
+        fill: true,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1,
+        borderWidth: 0.2,
+        backgroundColor: '#5A8EDA',
+        borderRadius: 10,
+      },
+    ],
+  };
+
+  if (chart) {
+    chart.destroy();
+  }
+
+  const canvas = document.getElementById(containerId) as HTMLCanvasElement;
+  if (canvas) {
+    chart = new chartJs.Chart(canvas, {
+      type: 'bar',
+      data,
+      options: {
+        scales: {
+          y: {
+            grid: {
+              display: false,
+            },
+          },
+          x: {
+            grid: {
+              display: false,
+            },
+          },
+        },
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        maintainAspectRatio: false,
+      },
+    });
+  }
+};
