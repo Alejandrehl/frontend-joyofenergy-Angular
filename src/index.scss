@@ -193,42 +193,6 @@ html {
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
-// Sidebar close button
-.sidebar-close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: rgb(245, 245, 245);
-  border: none;
-  font-size: 1.5rem;
-  color: rgb(109, 109, 109);
-  cursor: pointer;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.sidebar-close:hover {
-  background-color: rgb(235, 235, 235);
-  color: rgb(80, 80, 80);
-  transform: scale(1.05);
-}
-
-.sidebar-close:active {
-  transform: scale(0.95);
-}
-
-.close-icon {
-  line-height: 1;
-  font-weight: bold;
-  font-size: 1.25rem;
-}
-
 // Sidebar overlay
 .sidebar-overlay {
   position: fixed;
@@ -441,11 +405,6 @@ html {
     font-size: 0.875rem;
   }
 
-  .sidebar-close {
-    top: 0.5rem;
-    right: 0.5rem;
-  }
-
   .sidebar-overlay {
     top: 64px;
     height: calc(100% - 64px);
@@ -514,13 +473,71 @@ html {
     margin-bottom: 6px;
   }
 
-  .sidebar-close {
-    top: 0.25rem;
-    right: 0.25rem;
-  }
-
   .sidebar-overlay {
     top: 56px;
     height: calc(100% - 56px);
+  }
+}
+
+// Mobile specific sidebar styles
+@media (max-width: 767px) {
+  .sidebar-inner {
+    padding: 20px 16px;
+  }
+
+  .energy-card {
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+  }
+
+  .energy-label {
+    font-size: 1.125rem;
+  }
+
+  .energy-value {
+    font-size: 0.875rem;
+  }
+
+  .devices-title {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+
+  .device-card {
+    padding: 12px;
+    margin-bottom: 8px;
+  }
+
+  .device-name {
+    font-size: 0.8125rem;
+  }
+
+  .device-power {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar-inner {
+    padding: 16px 12px;
+  }
+
+  .energy-card {
+    padding: 14px;
+    margin-bottom: 10px;
+  }
+
+  .energy-label {
+    font-size: 1rem;
+  }
+
+  .devices-title {
+    font-size: 0.9375rem;
+  }
+
+  .device-card {
+    padding: 10px;
+    margin-bottom: 6px;
   }
 }
